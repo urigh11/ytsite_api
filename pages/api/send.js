@@ -11,7 +11,7 @@ const cors = initMiddleware(
   })
 );
 
-sendgrid.setApiKey(process.env.SENDGRID_KEY);
+sendgrid.setApiKey(process.env.GRIDMAIL);
 
 export default async function handler(req, res) {
   // Run cors
@@ -21,13 +21,13 @@ export default async function handler(req, res) {
 
   try {
     await sendgrid.send({
-      to: "cesarcorregiari@gmail.com",
+      to: "uriboros15@gmail.com",
       from: email,
       subject: `Nova mensagem de ${name}`,
       text: textArea,
       html: `<p>${textArea}</p>`,
     });
-    return res.status(200).json({ msg: "Mensagem enviada com sucesso." });
+    return res.status(200).json({ msg: "Thanks for your message!" });
   } catch (error) {
     return res.status(error.statusCode || 500).json({ error: error.message });
   }
